@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dip" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height" >
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/person_info"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/share_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dip" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dip"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/person_img"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/person_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/person_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/person_bb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="BB" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/question_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
+                android:layout_toRightOf="@id/question_img"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/question_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <Button
+                        android:id="@+id/add_friend_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/add_friend" />
+
+                    <EditText
+                        android:id="@+id/question_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/add_friend_btn"
+                        android:hint="@string/input_your_anwser" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

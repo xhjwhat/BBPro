@@ -1,0 +1,43 @@
+<resources>
+
+    <string name="app_name">BBPro</string>
+    <string name="conversation">沟通还能更有趣</string>
+    <string name="to_login">已有账号？ 登录</string>
+    <string name="phone_register">手机注册</string>
+	<string name="weixin_register">微信注册</string>
+	<string name="login">登录</string>
+	<string name="input_phone_num">请输入手机号码</string>
+	<string name="input_password">请输入你的密码（6-20位）</string>
+	<string name="forget_password">忘记密码？</string>
+	<string name="fast_weixin_login">微信快速登录</string>
+	<string name="phone_num">电话号码</string>
+	<string name="password">密码</string>
+	<string name="country">中国</string>
+	<string name="bind_phone_num">绑定电话号码请阅读相关</string>
+	<string name="ji">及</string>
+	<string name="protatol">服务条款</string>
+	<string name="private_">隐私政策</string>
+	<string name="next_stap">下一步</string>
+	<string name="reset_password">重置密码</string>
+	<string name="new_password">新密码</string>
+	<string name="confirm_password">确认密码</string>
+	<string name="hint_new_password">请重新设置你的新密码（6-20位）</string>
+	<string name="hint_confirm_password">请输入你的新密码</string>
+	<string name="your_num">您的号码</string>
+	<string name="input_verification">请输入手机验证码</string>
+	<string name="resend_verification">重新发送验证码（%1$d）</string>
+	<string name="nick_name">昵称</string>
+	<string name="input_nick_name">请输入昵称</string>
+	<string name="bb_acount">BB号</string>
+	<string name="input_bb_acount">请输入BB号</string>
+	<string name="set_issue">设置问题</string>
+	<string name="input_set_issue">请设置问题</string>
+	<string name="request_isssue">好友添加时需要回答你的问题</string>
+	<string name="person_info">个人信息</string>
+	<string name="add_friend">添加好友</string>
+	<string name="input_your_anwser">请输入你的答案</string>
+	<string name="weixin">微信</string>
+	<string name="group">群组</string>
+	<string name="friend">好友</string>
+	<string name="cancel">取消</string>
+</resources>

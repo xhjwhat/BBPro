@@ -1,0 +1,4 @@
+package:com.bbpro.app
+bbpro bbpro814
+alias:bbpro bbpro814
+sign:8B47B4D5995624B019CDB6D094DD965E

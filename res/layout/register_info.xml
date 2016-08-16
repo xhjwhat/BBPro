@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="45dip" >
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="BBB"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dip"
+        android:layout_marginRight="40dip"
+        android:layout_below="@id/title"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nick_name"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/nick_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:background="@null"
+                android:hint="@string/input_nick_name"
+                android:inputType="phone"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="5dip"
+            android:background="@color/edit_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bb_acount"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/bb_account_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:background="@null"
+                android:hint="@string/input_bb_acount"
+                android:inputType="phone"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="5dip"
+            android:background="@color/edit_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:background="@null"
+                android:hint="@string/hint_new_password"
+                android:inputType="phone"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="5dip"
+            android:background="@color/edit_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_issue"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/issue_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:background="@null"
+                android:hint="@string/input_set_issue"
+                android:inputType="phone"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="5dip"
+            android:background="@color/edit_line" />
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dip"
+            android:textSize="12sp"
+            android:textColor="#ff0000"
+            android:text="@string/request_isssue"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="40dip"
+        android:text="@string/login"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+</RelativeLayout>
