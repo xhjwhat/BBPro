@@ -16,8 +16,13 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -37,23 +42,13 @@ public class HttpRequest {
 	public static final int REQUEST_POST = 1;
 	public static final int REQUEST_GET = 0;
 
-	public int requestType = REQUEST_GET;
-
-	public String vi = Constants.VI;
-	public String si = "";
-	public String cd = "";
-	public String ap = "";
-	public String ps = "";
-	public String pg = "";
-	public String pc = "";
-	public String userId = "";
-	public String password = "";
-	public String code="";
-	public String shopid="";
-	public String addressid="";
+	public int requestType = REQUEST_POST;
+	public static final String REQUEST_RET_SUCCESS = "0";
 	
 
 	public SharedPreferences preferences;
+	public String json;
+	public String url = Constants.TEST_BBPRO_URL;
 
 	public interface HttpCallBack {
 		public void success(String json);
@@ -61,72 +56,31 @@ public class HttpRequest {
 		public void fail(String failReason);
 	}
 
-	public HttpRequest(String si, String cd) {
-		this.si = si;
-		this.cd = cd;
-		userId = BBProApp.getInstance().getUserId();
-		password = BBProApp.getInstance().getPassword();
-		// String phoneNum = BBProApp.getInstance().getPhoneNum();
-
+	public HttpRequest(){
+		
+	}
+	public HttpRequest(String json) {
+		this.json = json;
 	}
 
-	/**
-	 * 添加公共参数
-	 */
-	public String combineUrl() {
-		try {
-			ap = userId + "," + password;
-			StringBuffer buffer = new StringBuffer();
-			buffer.append("si=" + si + "&cd=" + cd);
-			buffer.append("&ap=" + ap);
-			if (!ps.equals("")) {
-				buffer.append("&ps=" + ps);
-			}
-			if (!pg.equals("")) {
-				buffer.append("&pg=" + pg);
-			}
-			if(!code.equals("")){
-				buffer.append("&code="+ code);
-			}
-			if(!shopid.equals("")){
-				buffer.append("&shopid="+shopid);
-			}
-			if(!addressid.equals("")){
-				
-				buffer.append("&addressid="+addressid);
-			}
-			if (!pc.equals("")) {
-				buffer.append("&pc=" + pc);
-			}
-			Log.e("params", buffer.toString());
-//			DESCrypto des = new DESCrypto();
-//			String desString = des.encrypt(buffer.toString());
+	
 
-//			return Constants.TEST_NETSHOP_URL + desString + "&vi="
-//					+ Constants.VI;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-
-	}
-
-	public void request(int rquestype, HttpCallBack callback) {
-		RequestTask task = new RequestTask(combineUrl(), callback);
+	public void request(String json, HttpCallBack callback) {
+		RequestTask task = new RequestTask(json, callback);
 		task.executeOnExecutor(BBProApp.getInstance().threadPool, "");
 	}
 
 	public void request(HttpCallBack callback) {
-		RequestTask task = new RequestTask(combineUrl(), callback);
+		RequestTask task = new RequestTask(this.json, callback);
 		task.executeOnExecutor(BBProApp.getInstance().threadPool, "");
 	}
 
 	public class RequestTask extends AsyncTask<String, Integer, String> {
-		private String url;
+		private String json;
 		private HttpCallBack callback;
 
-		public RequestTask(String url, HttpCallBack callback) {
-			this.url = url;
+		public RequestTask(String json, HttpCallBack callback) {
+			this.json = json;
 			this.callback = callback;
 		}
 
@@ -135,10 +89,17 @@ public class HttpRequest {
 			InputStream is = null;
 			String result = "";
 			try {
-				HttpParams httpParams = new BasicHttpParams();
-				//HttpConnectionParams.setSoTimeout(httpParams, 10000);
-				HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
-				HttpClient httpclient = new DefaultHttpClient(httpParams);
+//				HttpParams httpParams = new BasicHttpParams();
+//				HttpConnectionParams.setSoTimeout(httpParams, 10000);
+//				HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
+//				HttpClient httpclient = new DefaultHttpClient(httpParams);
+				 HttpParams httpParams = new BasicHttpParams();
+			        HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
+			        HttpConnectionParams.setSoTimeout(httpParams, 10000);
+			        SchemeRegistry sr = new SchemeRegistry();
+			        sr.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+			        ClientConnectionManager connManager = new ThreadSafeClientConnManager(httpParams, sr);
+			        HttpClient httpclient = new DefaultHttpClient(connManager, httpParams);
 				Log.e("url", url);
 				HttpResponse response;
 				if (requestType == REQUEST_GET) {
@@ -147,9 +108,9 @@ public class HttpRequest {
 
 				} else {
 					HttpPost httppost = new HttpPost(url);
-					StringEntity httpbody = new StringEntity(params[0],
-							HTTP.UTF_8);
+					StringEntity httpbody = new StringEntity(json,HTTP.UTF_8);
 					httppost.setEntity(httpbody);
+					httppost.setHeader("Content-Type", "application/json");
 					response = httpclient.execute(httppost);
 
 				}
@@ -174,26 +135,23 @@ public class HttpRequest {
 
 		@Override
 		protected void onPostExecute(String result) {
-//			try {
-//				XMLSerializer xmls = new XMLSerializer();
-//				//result = "<response description=\"操作成功\" error=\"0\"><list currentpage=\"1\" totalpage=\"1\" totalnum=\"1\"><order oid=\"20150430180559748376\" time=\"2015-04-30 18:07:46\" status=\"1\" statusdes=\"未支付\" shopid=\"2\" shopname=\"张三某某化肥�?\" total=\"52000\"><detaillist><detail pid=\"3\" pname=\"化肥3\" price=\"44\" amount=\"20袋\" weight=\"70KG/袋\" /><detail pid=\"6\" pname=\"化肥6\" price=\"456\" amount=\"40袋\" weight=\"70KG/袋\" /><detail pid=\"8\" pname=\"化肥8\" price=\"548\" amount=\"60袋\" weight=\"70KG/袋\" /></detaillist></order></list></response>";
-//				String json = xmls.read(result).toString().replace("@", "");
-//				Log.e("What", json);
-//				JSONObject jsonObject = new JSONObject(json);
-//				if (!jsonObject.isNull("error")) {
-//					if (jsonObject.optString("error").equals("0")) {
-//						callback.success(json);
-//					} else {
-//						callback.fail(jsonObject.optString("description"));
-//					}
-//				}
-//				return;
-//			} catch (JSONException e) {
-//				e.printStackTrace();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			callback.fail("网络异常，请稍后再试");
+			try {
+				Log.e("What", result);
+				JSONObject jsonObject = new JSONObject(result);
+				if (!jsonObject.isNull("ret")) {
+					if (jsonObject.optString("ret").equals("0")) {
+						callback.success(result);
+					} else {
+						callback.fail(jsonObject.optString("errmsg"));
+					}
+				}
+				return;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			callback.fail("网络异常，请稍后再试");
 		}
 
 	}
@@ -206,82 +164,8 @@ public class HttpRequest {
 		this.requestType = requestType;
 	}
 
-	public String getSi() {
-		return si;
+	public void setUrl(String url){
+		this.url = url;
 	}
-
-	public void setSi(String si) {
-		this.si = si;
-	}
-
-	public String getCd() {
-		return cd;
-	}
-
-	public void setCd(String cd) {
-		this.cd = cd;
-	}
-
-	public String getPs() {
-		return ps;
-	}
-
-	public void setPs(String ps) {
-		this.ps = ps;
-	}
-
-	public String getPg() {
-		return pg;
-	}
-
-	public void setPg(String pg) {
-		this.pg = pg;
-	}
-
-	public String getPc() {
-		return pc;
-	}
-
-	public void setPc(String pc) {
-		this.pc = pc;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public String getShopid() {
-		return shopid;
-	}
-
-	public void setShopid(String shopid) {
-		this.shopid = shopid;
-	}
-
-	public String getAddressid() {
-		return addressid;
-	}
-
-	public void setAddressid(String addressid) {
-		this.addressid = addressid;
-	}
+	
 }

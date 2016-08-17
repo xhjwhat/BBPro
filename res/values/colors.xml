@@ -2,4 +2,6 @@
 
     <color name="edit_line">#FF33E5B5</color>
 
+    <color name="nomal_text_color">#8f8f8f</color>
+    <color name="nomal_diviver_line">#dee0e2</color>
 </resources>

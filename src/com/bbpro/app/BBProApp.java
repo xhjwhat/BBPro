@@ -1,4 +1,5 @@
 package com.bbpro.app;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -7,7 +8,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.bbpro.ap.cache.ImageCache;
 import com.bbpro.ap.cache.ModelCache;
 import com.bbpro.ap.cache.AbstractCache.CacheParams;
-
 
 import android.app.Application;
 import android.content.Context;
@@ -21,8 +21,9 @@ public class BBProApp extends Application {
 	public static int MAX_HTTP_THREAD_COUNT = 5;
 	public ExecutorService threadPool;
 	public ImageCache mCache;
-	public double[] location = new double[]{0,0};
+	//public double[] location = new double[] { 0, 0 };
 	public ModelCache modelCache;
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -31,8 +32,7 @@ public class BBProApp extends Application {
 		modelCache = new ModelCache(this, "Netshop");
 		CacheParams cacheParams = new CacheParams("file_icon");
 		cacheParams.compressFormat = CompressFormat.JPEG;
-		// cacheParams.memCacheSize = (int) (Runtime.getRuntime().maxMemory() /
-		// 8);
+		cacheParams.memCacheSize = (int) (Runtime.getRuntime().maxMemory() / 8);
 		mCache = new ImageCache(this, cacheParams);
 		threadPool = Executors.newFixedThreadPool(MAX_HTTP_THREAD_COUNT,
 				new ThreadFactory() {
@@ -43,11 +43,12 @@ public class BBProApp extends Application {
 								+ ints.getAndIncrement());
 					}
 				});
-		//NetShopUtil.getLocation(this, location);
 	}
-	public ImageCache getImageCache(){
+
+	public ImageCache getImageCache() {
 		return mCache;
 	}
+
 	public static BBProApp getInstance() {
 		return instance;
 	}
@@ -63,12 +64,12 @@ public class BBProApp extends Application {
 	public String getPhoneNum() {
 		return share.getString("phone_num", "");
 	}
-	public double[] getLocation(){
-		return location;
-	}
+
+
 	public ModelCache getModelCache() {
 		return modelCache;
 	}
+
 	public void setModelCache(ModelCache modelCache) {
 		this.modelCache = modelCache;
 	}

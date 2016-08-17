@@ -25,7 +25,8 @@
 	<string name="hint_confirm_password">请输入你的新密码</string>
 	<string name="your_num">您的号码</string>
 	<string name="input_verification">请输入手机验证码</string>
-	<string name="resend_verification">重新发送验证码（%1$d）</string>
+	<string name="resend_verification2">重新发送验证码（%1$d）</string>
+	<string name="resend_verification">重新发送验证码</string>
 	<string name="nick_name">昵称</string>
 	<string name="input_nick_name">请输入昵称</string>
 	<string name="bb_acount">BB号</string>
@@ -40,4 +41,12 @@
 	<string name="group">群组</string>
 	<string name="friend">好友</string>
 	<string name="cancel">取消</string>
+	<string name="verification_alert">验证码将以短信形式发送至以上电话号码</string>
+	<string name="account_password_not_null">手机号或密码不能为空</string>
+	<string name="illegal_mobile_num">非法手机号</string>
+	<string name="password_alert">密码请输入字母或数字</string>
+	<string name="system_error">系统异常，请稍后再试</string>
+	<string name="network_error">网络异常，请稍后再试</string>
+	<string name="take_photo">拍照</string>
+	<string name="local_photo">本地上传</string>
 </resources>
