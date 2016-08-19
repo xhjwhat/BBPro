@@ -2,8 +2,8 @@ package com.bbpro.app.entity;
 
 import java.io.Serializable;
 
-import com.bbpro.ap.cache.CachedModel;
-import com.bbpro.ap.cache.ModelCache;
+import com.bbpro.app.cache.CachedModel;
+import com.bbpro.app.cache.ModelCache;
 
 
 public class AccountInfo extends CachedModel{

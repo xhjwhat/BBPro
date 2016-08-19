@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.bbpro.ap.cache;
+package com.bbpro.app.cache;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -86,9 +86,9 @@ public class DiskLruCache {
 		} else {
 			if (context != null) {
 				if (Utils.getUsableSpace(cacheDir) <= maxByteSize) {
-					Toast.makeText(context, "磁盘空间不足,请清理磁�?", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "磁盘空间不足,请清理磁�?", Toast.LENGTH_SHORT).show();
 				} else {
-					Toast.makeText(context, "缓存文件夹异�?请清理缓存文�?", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "缓存文件夹异�?请清理缓存文�?", Toast.LENGTH_SHORT).show();
 				}
 			}
 		}

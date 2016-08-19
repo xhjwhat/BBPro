@@ -7,12 +7,11 @@
     
 
     <TextView
-        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dip"
-        android:text="@string/phone_register"
+        android:text="@string/forget_pwd_title"
         android:textColor="#000000"
         android:textSize="18sp" />
 
@@ -81,43 +80,6 @@
         android:layout_marginTop="5dip"
         android:background="@color/edit_line" />
 
-    <LinearLayout
-        android:id="@+id/protatol_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dip"
-        android:layout_marginRight="40dip"
-        android:layout_marginTop="15dip"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bind_phone_num"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/protatol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/protatol"
-            android:textColor="#00ff00"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ji"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/private_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/private_"
-            android:textColor="#00ff00"
-            android:textSize="12sp" />
-    </LinearLayout>
 
     <Button
         android:id="@+id/next_btn"

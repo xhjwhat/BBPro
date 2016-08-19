@@ -5,9 +5,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.bbpro.ap.cache.ImageCache;
-import com.bbpro.ap.cache.ModelCache;
-import com.bbpro.ap.cache.AbstractCache.CacheParams;
+import com.bbpro.app.cache.ImageCache;
+import com.bbpro.app.cache.ModelCache;
+import com.bbpro.app.cache.AbstractCache.CacheParams;
 
 import android.app.Application;
 import android.content.Context;

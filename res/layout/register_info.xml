@@ -34,7 +34,8 @@
             android:id="@+id/head_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal" 
+            android:background="@drawable/feedback_add"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +56,6 @@
                 android:layout_marginLeft="15dip"
                 android:background="@null"
                 android:hint="@string/input_nick_name"
-                android:inputType="phone"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -84,7 +84,6 @@
                 android:layout_marginLeft="15dip"
                 android:background="@null"
                 android:hint="@string/input_bb_acount"
-                android:inputType="phone"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -113,7 +112,7 @@
                 android:layout_marginLeft="15dip"
                 android:background="@null"
                 android:hint="@string/hint_new_password"
-                android:inputType="phone"
+                android:inputType="textPassword"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -142,7 +141,6 @@
                 android:layout_marginLeft="15dip"
                 android:background="@null"
                 android:hint="@string/input_set_issue"
-                android:inputType="phone"
                 android:textSize="13sp" />
         </LinearLayout>
 

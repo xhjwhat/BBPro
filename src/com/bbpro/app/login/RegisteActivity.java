@@ -3,6 +3,7 @@ package com.bbpro.app.login;
 import com.bbpro.app.R;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,14 +16,19 @@ import android.widget.ImageView;
 public class RegisteActivity extends FragmentActivity {
 	public final int PHONE_FRAGMENT = 1;
 	public final int VER_FRAGMENT = 2;
+	public final static int REGISTER = 101;
+	public final static int RESET_PASSWORD = 102;
 	public Fragment phoneFragment,verFragment;
 	public FragmentManager manager;
 	public FragmentTransaction transaction;
 	public ImageView backImg;
 	public int currentFragment = PHONE_FRAGMENT;
+	public int currentType;
 	public void onCreate(Bundle bundle){
 		super.onCreate(bundle);
 		setContentView(R.layout.register_fragment);
+		Intent intent = getIntent();
+		currentType = intent.getIntExtra("type", REGISTER);
 		backImg = (ImageView)findViewById(R.id.back_img);
 		backImg.setOnClickListener(new OnClickListener() {
 			@Override
@@ -35,6 +41,9 @@ public class RegisteActivity extends FragmentActivity {
 			}
 		});
 		phoneFragment = new PhoneResterFragment();
+		Bundle args = new Bundle();
+		args.putInt("type", currentType);
+		phoneFragment.setArguments(args);
 		manager = getSupportFragmentManager();
 		transaction = manager.beginTransaction();
 		transaction.add(R.id.register_frame, phoneFragment , "phone_register_fragment");

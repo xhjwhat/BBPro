@@ -9,6 +9,7 @@
 	<string name="input_phone_num">请输入手机号码</string>
 	<string name="input_password">请输入你的密码（6-20位）</string>
 	<string name="forget_password">忘记密码？</string>
+	<string name="forget_pwd_title">忘记密码</string>
 	<string name="fast_weixin_login">微信快速登录</string>
 	<string name="phone_num">电话号码</string>
 	<string name="password">密码</string>
@@ -26,7 +27,7 @@
 	<string name="your_num">您的号码</string>
 	<string name="input_verification">请输入手机验证码</string>
 	<string name="resend_verification2">重新发送验证码（%1$d）</string>
-	<string name="resend_verification">重新发送验证码</string>
+	<string name="resend_verification">重新发送</string>
 	<string name="nick_name">昵称</string>
 	<string name="input_nick_name">请输入昵称</string>
 	<string name="bb_acount">BB号</string>
@@ -49,4 +50,13 @@
 	<string name="network_error">网络异常，请稍后再试</string>
 	<string name="take_photo">拍照</string>
 	<string name="local_photo">本地上传</string>
+	<string name="info_upload">资料上传中...</string>
+	
+	
+	<string name="errcode_success">发送成功</string>
+    <string name="errcode_cancel">发送取消</string>
+    <string name="errcode_deny">发送被拒绝</string>
+    <string name="errcode_unknown">发送返回</string>
+    <string name="wx_login">已发送请求，请稍后</string>
+    <string name="wx_no_install">请先安装微信</string>
 </resources>

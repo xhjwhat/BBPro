@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.bbpro.ap.cache;
+package com.bbpro.app.cache;
 
 import java.io.Closeable;
 import java.io.File;
@@ -72,7 +72,7 @@ public class Utils {
     @SuppressLint("NewApi")
     public static boolean isExternalStorageRemovable() {
         /*
-         * 在一些定制机上不�?if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) { return
+         * 在一些定制机上不�?if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) { return
          * Environment.isExternalStorageRemovable(); }
          */
         return true;

@@ -1,17 +1,17 @@
-package com.bbpro.ap.cache;
+package com.bbpro.app.cache;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 public interface ImageLoadingListener {
     /**
-     * 第一次取图片�?更新下载进度
+     * 第一次取图片�?更新下载进度
      * @param percent
      */
     void onUpdateDownload(float percent);
 
     /**
-     * 第一次取到图片时,在这里处理图片效�?
+     * 第一次取到图片时,在这里处理图片效�?
      * @param bitmap 要处理的图片
      * @return 返回处理过的图片
      */

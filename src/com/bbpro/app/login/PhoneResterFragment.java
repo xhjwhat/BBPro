@@ -12,6 +12,7 @@ import com.bbpro.app.util.StringUtil;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,19 +23,23 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class PhoneResterFragment extends Fragment implements OnClickListener{
 	public EditText phoneEdit;
-	public TextView protatolText,privateText;
+	public TextView protatolText,privateText,titleText;
+	public LinearLayout protatolLayout;
 	public Button nextBtn;
 	public Dialog dialog;
+	public int currentType;
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			 ViewGroup container,  Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.phone_register, null);
-		
+		titleText = (TextView) view.findViewById(R.id.title);
+		protatolLayout = (LinearLayout) view.findViewById(R.id.protatol_layout);
 		protatolText = (TextView) view.findViewById(R.id.protatol);
 		protatolText.setOnClickListener(this);
 		privateText = (TextView) view.findViewById(R.id.private_);
@@ -42,24 +47,16 @@ public class PhoneResterFragment extends Fragment implements OnClickListener{
 		nextBtn = (Button) view.findViewById(R.id.next_btn);
 		nextBtn.setOnClickListener(this);
 		phoneEdit = (EditText) view.findViewById(R.id.phone_num_edit);
-		phoneEdit.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if(phoneEdit.getText().toString().trim().length() == 11){
-					nextBtn.setClickable(true);
-				}else{
-					nextBtn.setClickable(false);
-				}
-			}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-			@Override
-			public void afterTextChanged(Editable s) {
-			}
-		});
 		return view;
+	}
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		currentType = getArguments().getInt("type");
+		if(currentType == RegisteActivity.RESET_PASSWORD){
+			titleText.setText(R.string.forget_pwd_title);
+			protatolLayout.setVisibility(View.GONE);
+		}
+		super.onActivityCreated(savedInstanceState);
 	}
 	@Override
 	public void onClick(View v) {
@@ -85,6 +82,7 @@ public class PhoneResterFragment extends Fragment implements OnClickListener{
 		}
 		
 	}
+	
 	HttpCallBack callback = new HttpCallBack() {
 		public void success(String json) {
 			try {

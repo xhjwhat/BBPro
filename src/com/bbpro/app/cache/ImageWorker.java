@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.bbpro.ap.cache;
+package com.bbpro.app.cache;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -219,7 +219,7 @@ public abstract class ImageWorker {
 	}
 
 	/**
-	 * 是否更早�?��设置图片任务
+	 * 是否更早�?��设置图片任务
 	 * 
 	 * @param exitTasksEarly
 	 */

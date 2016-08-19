@@ -1,4 +1,4 @@
-package com.bbpro.ap.cache;
+package com.bbpro.app.cache;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -93,7 +93,7 @@ public abstract class AbstractCache<ValT> {
     /**
      * @param key The key
      * @param value The value
-     * @param override 如果是true,当缓存中已存在key�?覆盖当前值到缓存�?否则不覆�?
+     * @param override 如果是true,当缓存中已存在key�?覆盖当前值到缓存�?否则不覆�?
      */
     public void addToCache(String key, ValT value, boolean override) {
         if (key == null || value == null) {

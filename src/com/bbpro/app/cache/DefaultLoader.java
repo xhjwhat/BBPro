@@ -1,8 +1,8 @@
-package com.bbpro.ap.cache;
+package com.bbpro.app.cache;
 
 
-import com.bbpro.ap.cache.ImageFetcher;
 import com.bbpro.app.BBProApp;
+import com.bbpro.app.cache.ImageFetcher;
 
 import android.content.Context;
 

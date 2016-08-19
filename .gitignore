@@ -2,6 +2,16 @@
 Thumbs.db
 ehthumbs.db
 
+
+#过滤工程编译文件
+*.class
+*.apk
+bin/
+gen/
+.settings/
+.classpath
+.project
+
 # Folder config file
 Desktop.ini
 

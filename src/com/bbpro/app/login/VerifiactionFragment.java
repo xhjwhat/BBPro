@@ -29,7 +29,7 @@ import com.bbpro.app.net.HttpRequest.HttpCallBack;
 public class VerifiactionFragment extends Fragment{
 	public TextView phoneText;
 	public EditText verificationEdit;
-	public Button nextBtn;
+	public Button nextBtn,timeBtn;
 	public int count = 60;
 	public Timer timer;
 	public String phone;
@@ -39,23 +39,23 @@ public class VerifiactionFragment extends Fragment{
 		View view = inflater.inflate(R.layout.verification_fragment, null);
 		phoneText = (TextView) view.findViewById(R.id.phone_num_text);
 		verificationEdit = (EditText) view.findViewById(R.id.verifcation_edit);
-		verificationEdit.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if(verificationEdit.getText().toString().trim().length()>0){
-					nextBtn.setText(R.string.next_stap);
-					nextBtn.setClickable(true);
-				}else{
-					
-				}
-			}
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				
-			}
-			public void afterTextChanged(Editable s) {
-			}
-		});
+//		verificationEdit.addTextChangedListener(new TextWatcher() {
+//			@Override
+//			public void onTextChanged(CharSequence s, int start, int before, int count) {
+//				if(verificationEdit.getText().toString().trim().length()>0){
+//					nextBtn.setText(R.string.next_stap);
+//					nextBtn.setClickable(true);
+//				}else{
+//					
+//				}
+//			}
+//			public void beforeTextChanged(CharSequence s, int start, int count,
+//					int after) {
+//				
+//			}
+//			public void afterTextChanged(Editable s) {
+//			}
+//		});
 		nextBtn = (Button) view.findViewById(R.id.next_btn);
 		nextBtn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -65,6 +65,13 @@ public class VerifiactionFragment extends Fragment{
 				}else{
 					resendVerification();
 				}
+			}
+		});
+		timeBtn = (Button) view.findViewById(R.id.verification_time);
+		timeBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				resendVerification();
 			}
 		});
 		return view;
@@ -82,22 +89,21 @@ public class VerifiactionFragment extends Fragment{
 		@Override
 		public void run() {
 			if(count == 0){
-				nextBtn.setClickable(true);
+				timeBtn.setClickable(true);
 				count = 60;
-				nextBtn.post(new Runnable(){
+				timeBtn.post(new Runnable(){
 					public void run(){
-						nextBtn.setText(R.string.resend_verification);
+						timeBtn.setText(R.string.resend_verification);
 					}
 				});
 				
 			}else{
-				nextBtn.setClickable(false);
-				nextBtn.post(new Runnable(){
+				timeBtn.setClickable(false);
+				timeBtn.post(new Runnable(){
 					public void run(){
-						nextBtn.setText(getString(R.string.resend_verification2, count));
+						timeBtn.setText(getString(R.string.resend_verification2, count));
 					}
 				});
-				
 				count--;
 			}
 		}
@@ -138,7 +144,7 @@ public class VerifiactionFragment extends Fragment{
 		public void success(String json) {
 			try {
 				JSONObject object = new JSONObject(json);
-				if(HttpRequest.REQUEST_RET_SUCCESS.equals(object.get("ret"))){
+				if(HttpRequest.REQUEST_RET_SUCCESS.equals(object.getString("ret"))){
 					Intent intent = new Intent(getActivity(),RegisterInfoActivity.class);
 					startActivity(intent);
 				}else{

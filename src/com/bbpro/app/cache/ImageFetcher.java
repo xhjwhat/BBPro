@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.bbpro.ap.cache;
+package com.bbpro.app.cache;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -258,7 +258,7 @@ public class ImageFetcher extends ImageResizer {
             Thread timeoutThread = new Thread("BitmapTimeoutThread") {
                 public void run() {
                     try {
-                        Thread.sleep(6000);// 如果6秒后还没有完成解�?就�?出解�?
+                        Thread.sleep(6000);// 如果6秒后还没有完成解�?就�?出解�?
                         options.requestCancelDecode();
                     } catch (InterruptedException e) {
                     }

@@ -16,15 +16,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bbpro.ap.cache.ModelCache;
 import com.bbpro.app.BBProApp;
 import com.bbpro.app.R;
+import com.bbpro.app.cache.ModelCache;
 import com.bbpro.app.entity.AccountInfo;
 import com.bbpro.app.net.Constants;
 import com.bbpro.app.net.HttpRequest;
 import com.bbpro.app.net.HttpRequest.HttpCallBack;
 import com.bbpro.app.util.DESCrypto;
 import com.bbpro.app.util.StringUtil;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.SendAuth;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 public class LoginActivity extends Activity implements OnClickListener{
 	public EditText phoneEdit,passwordEdit;
@@ -33,10 +36,12 @@ public class LoginActivity extends Activity implements OnClickListener{
 	public TextView forgetText;
 	public String phone;
 	public String password;
+	public IWXAPI mWeixinAPI;
 	public void onCreate(Bundle bundle){
 		super.onCreate(bundle);
 		setContentView(R.layout.login);
 		initView();
+		initWeixin();
 	}
 	public void initView(){
 		loginBtn = (Button) findViewById(R.id.login_btn);
@@ -48,6 +53,13 @@ public class LoginActivity extends Activity implements OnClickListener{
 		forgetText = (TextView) findViewById(R.id.forget_password_text);
 		forgetText.setOnClickListener(this);
 	}
+	// 微信登录初始化
+		private void initWeixin() {
+			if (null == mWeixinAPI) {
+				mWeixinAPI = WXAPIFactory.createWXAPI(this,
+						Constants.WEIXIN_KEY);
+			}
+		}
 	public void onClick(View v){
 		switch(v.getId()){
 		case R.id.login_btn:
@@ -94,6 +106,29 @@ public class LoginActivity extends Activity implements OnClickListener{
 		}
 		
 	}
+	
+	// 微信登录
+//		private void loginWithWeixin() {
+//			if (!mWeixinAPI.isWXAppInstalled()) {
+//				mContractView.showToastStatus(R.string.wx_no_install);
+//				return;
+//			}
+//			boolean isSuccess = mWeixinAPI.registerApp(OtherLoginKey.WX_APP_ID);
+//			if (!MPREpubReaderTool.checkNetState(mContext)) {
+//				mContractView.showToastStatus(R.string.net_exception);
+//				return;
+//			}
+//			if (isSuccess) {
+//				final SendAuth.Req req = new SendAuth.Req();
+//				req.scope = OtherLoginKey.SNA_USER;
+//				req.state = OtherLoginKey.WX_STATE;
+//				boolean bool = mWeixinAPI.sendReq(req);
+//				if (bool) {
+//					mContractView.showToastStatus(R.string.wx_login);
+//				}
+//			}
+//
+//		}
 	HttpCallBack loginCallback = new HttpCallBack() {
 		@Override
 		public void success(String json) {

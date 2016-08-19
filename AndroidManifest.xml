@@ -35,6 +35,9 @@
         <activity
             android:name="com.bbpro.app.login.LoginActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.bbpro.app.person.PersonCenterActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
